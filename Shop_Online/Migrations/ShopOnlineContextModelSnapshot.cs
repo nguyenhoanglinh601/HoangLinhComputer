@@ -264,7 +264,7 @@ namespace Shop_Online.Migrations
                     b.Property<int>("Product_ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Detail")
+                    b.Property<string>("Product_Detail")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Product_ID");

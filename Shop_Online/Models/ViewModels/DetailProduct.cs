@@ -7,10 +7,9 @@ namespace Shop_Online.Models.ViewModels
 {
     public class DetailProduct
     {
-        public Product productInfo { get; set; }
-        public List<ProductImage> productImages { get; set; }
-        public LinkedList<Product> SaleOffProductList { get; set; }
-        public LinkedList<Product> SameProductList { get; set; }
+        public ProductInfo product { get; set; }
+        public List<ProductInfo> SaleOffProductList { get; set; }
+        public List<ProductInfo> SameProductList { get; set; }
 
     }
 }

@@ -12,6 +12,6 @@ namespace Shop_Online.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Product_ID { get; set; }
-        public string Detail { get; set; }
+        public string Product_Detail { get; set; }
     }
 }

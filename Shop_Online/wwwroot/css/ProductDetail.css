@@ -22,7 +22,7 @@
 .next {
     cursor: pointer;
     position: absolute;
-    top: 40%;
+    top: 20%;
     width: auto;
     padding: 16px;
     margin-top: -50px;
@@ -85,5 +85,28 @@
 }
 
 .display-image{
-    max-height: 200px;
+    max-height: auto;
+}
+
+.free-shipping {
+    color: rgb(83, 195, 5);
+}
+
+.icon-shipping {
+    padding: 2px;
+}
+
+.icon {
+    color: rgb(20, 53, 195);
+    padding: 2px;
+}
+
+.component {
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 1200px){
+    .next, .prev{
+        top: 40%;
+    }
 }

@@ -29,3 +29,25 @@ function convertDiscountPrice() {
         document.getElementsByClassName("product_discount_price")[i].innerHTML = product_price + "đ";
     }
 }
+
+function navigateCart() {
+    let cart = localStorage.getItem("cart");
+    $.post("/Carts/AddProduct",
+        {
+            data: cart
+        },
+        function () {
+            window.location.replace("https://localhost:44386/carts");
+        });
+}
+
+function sendRequest() {
+    let cart = localStorage.getItem("cart");
+    $.post("/Carts/AddProduct",
+        {
+            data: cart
+        },
+        function (data, status) {
+            console.log("Data: " + data + "\nStatus: " + status);
+        });
+}

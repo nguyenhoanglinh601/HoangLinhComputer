@@ -10,85 +10,85 @@ using Shop_Online.Models;
 
 namespace Shop_Online.Controllers
 {
-    public class StoragesController : Controller
+    public class ProductDetailsController : Controller
     {
         private readonly ShopOnlineContext _context;
 
-        public StoragesController(ShopOnlineContext context)
+        public ProductDetailsController(ShopOnlineContext context)
         {
             _context = context;
         }
 
-        // GET: Storages
+        // GET: ProductDetails
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Storage.ToListAsync());
+            return View(await _context.ProductDetail.ToListAsync());
         }
 
-        // GET: Storages/Details/5
-        public async Task<IActionResult> Details(string id)
+        // GET: ProductDetails/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var storage = await _context.Storage
-                .FirstOrDefaultAsync(m => m.Product_Id == id);
-            if (storage == null)
+            var productDetail = await _context.ProductDetail
+                .FirstOrDefaultAsync(m => m.Product_ID == id);
+            if (productDetail == null)
             {
                 return NotFound();
             }
 
-            return View(storage);
+            return View(productDetail);
         }
 
-        // GET: Storages/Create
+        // GET: ProductDetails/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Storages/Create
+        // POST: ProductDetails/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Product_Id,Amount,importDate,exportDate")] Storage storage)
+        public async Task<IActionResult> Create([Bind("Product_ID,Product_Detail")] ProductDetail productDetail)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(storage);
+                _context.Add(productDetail);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(storage);
+            return View(productDetail);
         }
 
-        // GET: Storages/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        // GET: ProductDetails/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var storage = await _context.Storage.FindAsync(id);
-            if (storage == null)
+            var productDetail = await _context.ProductDetail.FindAsync(id);
+            if (productDetail == null)
             {
                 return NotFound();
             }
-            return View(storage);
+            return View(productDetail);
         }
 
-        // POST: Storages/Edit/5
+        // POST: ProductDetails/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Product_Id,Amount,importDate,exportDate")] Storage storage)
+        public async Task<IActionResult> Edit(int id, [Bind("Product_ID,Product_Detail")] ProductDetail productDetail)
         {
-            if (id != storage.Product_Id)
+            if (id != productDetail.Product_ID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Shop_Online.Controllers
             {
                 try
                 {
-                    _context.Update(storage);
+                    _context.Update(productDetail);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StorageExists(storage.Product_Id))
+                    if (!ProductDetailExists(productDetail.Product_ID))
                     {
                         return NotFound();
                     }
@@ -113,41 +113,41 @@ namespace Shop_Online.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(storage);
+            return View(productDetail);
         }
 
-        // GET: Storages/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        // GET: ProductDetails/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var storage = await _context.Storage
-                .FirstOrDefaultAsync(m => m.Product_Id == id);
-            if (storage == null)
+            var productDetail = await _context.ProductDetail
+                .FirstOrDefaultAsync(m => m.Product_ID == id);
+            if (productDetail == null)
             {
                 return NotFound();
             }
 
-            return View(storage);
+            return View(productDetail);
         }
 
-        // POST: Storages/Delete/5
+        // POST: ProductDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var storage = await _context.Storage.FindAsync(id);
-            _context.Storage.Remove(storage);
+            var productDetail = await _context.ProductDetail.FindAsync(id);
+            _context.ProductDetail.Remove(productDetail);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StorageExists(string id)
+        private bool ProductDetailExists(int id)
         {
-            return _context.Storage.Any(e => e.Product_Id == id);
+            return _context.ProductDetail.Any(e => e.Product_ID == id);
         }
     }
 }

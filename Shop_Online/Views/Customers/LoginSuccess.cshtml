@@ -1,0 +1,16 @@
+﻿@model Shop_Online.Models.Customer
+
+<script>
+    localStorage.setItem("user_id",@Model.ID);
+    let cart = localStorage.getItem("cart");
+    $.post("/Carts/AddProduct",
+        {
+            data: cart
+        },
+        function (data, status) {
+            if (sessionStorage.getItem("current_page") != null)
+                window.location.href = sessionStorage.getItem("current_page");
+            else
+                window.location.href = "https://localhost:44386";
+        });
+</script>
