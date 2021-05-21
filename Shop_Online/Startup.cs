@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Shop_Online.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace Shop_Online
 {
@@ -28,7 +30,8 @@ namespace Shop_Online
         {
             //httpsession
             services.AddDistributedMemoryCache();
-            services.AddSession(options => {
+            services.AddSession(options =>
+            {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);//You can set Time   
             });
 
@@ -47,7 +50,9 @@ namespace Shop_Online
             services.AddDbContext<ShopOnlineContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ShopOnlineContext")));
 
-
+            services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] {
+                UnicodeRanges.All
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +83,7 @@ namespace Shop_Online
                     name: "default",
                     pattern: "{controller=Products}/{action=Index}/{id?}");
             });
+
         }
     }
 }

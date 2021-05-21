@@ -1,0 +1,73 @@
+﻿@model Shop_Online.Models.ViewModels.SearchProductInfo
+
+@{
+    ViewData["Title"] = "Tìm kiếm cho " + Model.key_word +" - ";
+    ViewData["Description"] = "Tìm kiếm cho từ khóa " + Model.key_word + "";
+    ViewData["Keyworks"] = "tim san pham, tim san pham " + Model.key_word + "";
+    ViewData["Author"] = "Hoàng Linh";
+    ViewData["Og-Title"] = "Tìm kiếm cho " + Model.key_word;
+    ViewData["Og-Description"] = "Tìm kiếm cho từ khóa " + Model.key_word + "";
+    ViewData["Og-Url"] = "https://localhost:44386/Products/Search?key_word=" + Model.key_word;
+    ViewData["Og-Image"] = "/Images/logo.png";
+    ViewData["Img-Src"] = "/Images/logo.png";
+    ViewData["Dc-Title"] = "Tìm kiếm cho " + Model.key_word + "";
+    ViewData["Dc-Identifier"] = "https://localhost:44386/Products/Search?key_word=" + Model.key_word;
+    ViewData["Dc-Description"] = "Tìm kiếm cho từ khóa " + Model.key_word + "";
+    ViewData["Dc-Subject"] = "tim san pham, tim san pham " + Model.key_word + "";
+    ViewData["Alternate"] = "https://localhost:44386/Products/Search?key_word=" + Model.key_word;
+    ViewData["Canonical"] = "https://localhost:44386/Products/Search?key_word=" + Model.key_word;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb px-lg-5 mb-0">
+        <li class="breadcrumb-item"><a href="/">Trang Chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Tìm kiếm "@Model.key_word"</li>
+    </ol>
+</nav>
+<head>
+    <link rel="stylesheet" href="~/css/home.css" />
+</head>
+<div class="container my-2 d-product">
+    <div class="row my-3 bg-white">
+        <div class="d-title w-100 d-flex justify-content-between px-2">
+            <a class="">
+                <h1 class="m-0">Kết quả tìm kiếm "@Model.key_word" - @Model.products.Count() sản phẩm</h1>
+            </a>
+            <a class="d-md-block d-none">
+                <h5 class="m-0">Lọc nâng cao <i class="fas fa-sort"></i></h5>
+            </a>
+        </div>
+        <hr class="text-secondary w-100"/>
+        @for (var i = 0; i < Model.products.Count(); i++)
+        {
+            <div class="col-lg-3 col-md-4 my-3 text-center">
+                <a href="/products/detail?p=@Model.products[i].url">
+
+                    <img class="img-fluid thumbnail" src="@Model.products[i].thumbnail" 
+                         alt="@Model.products[i].product_info.Product_Name"/>
+                    <p class="text-center m-0 text-secondary product_name">
+                        @Html.DisplayFor(modelItem => Model.products[i].product_info.Product_Name)
+                    </p>
+                    <p class="text-center m-0">
+                        <del>
+                            <small class="product_discount_price">
+                                @Html.DisplayFor(modelItem => Model.products[i].product_info.price)
+                            </small>
+                        </del>
+                    </p>
+                    <p class="text-center text-danger m-0">
+                        <strong class="product_price">
+                            @Html.DisplayFor(modelItem => Model.products[i].product_info.price)
+                        </strong>
+                    </p>
+
+                </a>
+            </div>
+        }
+    </div>
+</div>
+<script type="text/javascript" src="~/js/general.js"></script>
+<script type="text/javascript">
+    displayThumbnail();
+    convertPrice();
+    convertDiscountPrice();
+</script>

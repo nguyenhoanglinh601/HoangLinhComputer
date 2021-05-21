@@ -41,6 +41,11 @@ function navigateCart() {
         });
 }
 
+function navigateOrder() {
+    sessionStorage.setItem("current_page", "https://localhost:44386/Orders");
+    window.location.replace("https://localhost:44386/Orders");
+}
+
 function sendRequest() {
     let cart = localStorage.getItem("cart");
     $.post("/Carts/AddProduct",
@@ -50,4 +55,37 @@ function sendRequest() {
         function (data, status) {
             console.log("Data: " + data + "\nStatus: " + status);
         });
+    checkCart();
+}
+
+function convertTime() {
+    let elements = document.getElementsByClassName("time");
+    for (let i = 0; i < elements.length; i++) {
+        let time = elements[i].innerHTML;
+        if (time != "1/1/0001 12:00:00 AM") {
+            let date = time.split(" ")[0];
+            let day = date.split("/")[1];
+            let month = date.split("/")[0];
+            let year = date.split("/")[2];
+
+            document.getElementsByClassName("time")[i].innerHTML = day + "/" + month + "/"
+                + year + " " + time.split(" ")[1] + " " + time.split(" ")[2];
+        }
+        else {
+            document.getElementsByClassName("time")[i].innerHTML = "Đang xử lý";
+        }
+    }
+}
+
+function checkCart() {
+    try {
+        let cart_arr = localStorage.getItem("cart").split(";");
+        $(".badgeNumberCartItem").show();
+        $(".badgeNumberCartItem")[0].innerHTML = cart_arr.length;
+        $(".badgeNumberCartItem")[1].innerHTML = cart_arr.length;
+    }
+    catch {
+        $(".badgeNumberCartItem").hide();
+    }
+    
 }

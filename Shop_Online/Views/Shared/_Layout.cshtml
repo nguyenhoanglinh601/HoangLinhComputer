@@ -3,7 +3,41 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="SHORTCUT ICON" type="image/x-icon" href="/images/icon/favicon.ico" />
     <title>@ViewData["Title"]Hoàng Linh Computer</title>
+    <meta name="description" content="@ViewData["Description"]" />
+    <meta name="keywords" content="@ViewData["Keyworks"]" />
+    <meta name="author" content="@ViewData["Author"]" />
+    <meta property="og:title" content="@ViewData["Og-Title"]" />
+    <meta property="og:description" content="@ViewData["Og-Description"]" />
+    <meta property="og:url" content="@ViewData["Og-Url"]" />
+    <meta property="og:image" content="@ViewData["Og-Image"]" />
+    <link rel="image_src" href="@ViewData["Img-Src"]" />
+    <meta property="og:type" content="article" />
+    <meta http-equiv="content-language" content="vi" />
+    <link rel="schema.DC" href="https://purl.org/dc/elements/1.1/" />
+    <meta name="DC.title" content="@ViewData["Dc-Title"]" />
+    <meta name="DC.identifier" content="@ViewData["Dc-Identifier"]" />
+    <meta name="DC.description" content="@ViewData["Dc-Description"]" />
+    <meta name="DC.subject" content="@ViewData["Dc-Subject"]" />
+    <meta name="DC.language" scheme="UTF-8" content="vi" />
+    <link rel="alternate" href="@ViewData["Alternate"]" hreflang="vi-vn" />
+    <link rel="canonical" href="@ViewData["Canonical"]" />
+    <meta http-equiv="content-language" content="vi" />
+    <link rel="schema.DC" href="https://purl.org/dc/elements/1.1/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="all, index, follow" />
+    <meta name="geo.region" content="VN" />
+    <meta name="geo.position" content="10.775146, 106.619383" />
+    <meta name="geo.placename" content="Hồ Chí Minh" />
+    <meta name="Area" content="HoChiMinh, Saigon, Hanoi, Danang, Vietnam" />
+    <meta name="revisit-After" content="1 days" />
+
+    @*<meta name="copyright" content="" />
+        <meta name="google-site-verification" content="" />
+        <meta name="google-site-verification" content="" />*@
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/layout.css" />
     <link rel="stylesheet" href="~/css/general.css" />
@@ -39,22 +73,23 @@
             <div class="row ">
                 <div class="col-8 col-md-7 col-lg-4 text-center text-md-left order-1 ">
                     <a href="/">
-                        <img class="logo" src="~/Images/logo.png" />
+                        <img class="logo" src="~/Images/logo.png" alt="Hoàng Linh Computer - Máy tính Hoàng Linh - giá rẻ, chính hãng" />
                     </a>
                 </div>
-                <div class="col-12 col-md-12 col-lg-5 order-3 order-md-4 order-lg-3 ">
-                    <form>
+                <div class="col-12 col-md-12 col-lg-5 order-3 order-md-4 order-lg-2 ">
+                    <form asp-controller="Products" asp-action="Search" method="get">
                         <div class="input-group my-1 bg-white rounded">
-                            <input type="text" class="form-control border-secondary border-right-0" placeholder="Hôm nay bạn muốn mua gì?" name="key_word">
+                            <input type="text" class="form-control border-secondary border-right-0"
+                                   placeholder="Hôm nay bạn muốn mua gì?" name="key_word">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary border-left-0" type="button">
+                                <button class="btn btn-outline-secondary border-left-0" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-4 col-md-3 col-lg-2 order-2 order-lg-2 px-lg-0 px-1 ">
+                <div class="col-4 col-md-3 col-lg-2 order-2 order-lg-3 px-lg-0 px-1 ">
                     <div class="dropdown text-right">
                         <button class="btn dropdown-toggle btn-menu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-bars"></i>
@@ -62,47 +97,42 @@
                             <p class="m-0 d-md-none d-inline">Menu</p>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a onClick="navigateCart()" class="dropdown-item px-2 m-0 d-md-none d-block">
+                            <a onClick="navigateCart()" class="dropdown-item px-2 m-0 d-md-none d-block linkCart">
                                 <i class="fas fa-shopping-cart icon"></i>
                                 <strong>Giỏ hàng</strong>
+                                <div class="badgeNumberCartItem"></div>
                             </a>
-                            <a class="dropdown-item px-2 m-0 d-md-none d-block">
+                            <a onClick="navigateOrder()" class="dropdown-item px-2 m-0 d-md-none d-block">
                                 <i class="fas fa-file-invoice-dollar icon px-1"></i>
                                 <strong>Đơn hàng</strong>
                             </a>
-                            <a class="dropdown-item px-2 m-0 d-md-none d-block">
+                            <a href="/Customers/Login" class="dropdown-item px-2 m-0 d-md-none d-block">
                                 <i class="far fa-user-circle icon"></i>
                                 <strong>Tài khoản</strong>
                             </a>
                             <a class="dropdown-item px-2 m-0 d-md-none d-block">
                                 <strong>Sản phẩm</strong>
                             </a>
-                            <a class="dropdown-item" href="#">Máy tính bàn</a>
-                            <a class="dropdown-item" href="#">Laptop</a>
-                            <a class="dropdown-item" href="#">Chuột</a>
-                            <a class="dropdown-item" href="#">Bàn phím</a>
-                            <a class="dropdown-item" href="#">Ram</a>
-                            <a class="dropdown-item" href="#">Loa ngoài</a>
-                            <a class="dropdown-item" href="#">Card màn hình</a>
-                            <a class="dropdown-item" href="#">Ổ cứng</a>
-                            <a class="dropdown-item" href="#">Phụ kiện</a>
+
+                            @(await Component.InvokeAsync("CatologsLayout"))
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 col-lg-1 d-md-flex d-none justify-content-end order-md-2 order-lg-4 ">
+                <div class="col-md-2 col-lg-1 pt-1 d-md-flex d-none justify-content-end order-md-2 order-lg-4 ">
                     <div class="px-2 pt-2 ">
-                        <a>
+                        <a href="/Customers/Login">
                             <i class="far fa-user-circle icon-top"></i>
                         </a>
                     </div>
                     <div class="px-2 pt-2 ">
-                        <a>
+                        <a onClick="navigateOrder()">
                             <i class="fas fa-file-invoice-dollar icon-top"></i>
                         </a>
                     </div>
                     <div class="px-2 pt-2 ">
-                        <a onClick="navigateCart()">
+                        <a class="linkCart" onClick="navigateCart()">
                             <i class="fas fa-shopping-cart icon-top"></i>
+                            <div class="badgeNumberCartItem"></div>
                         </a>
                     </div>
                 </div>
@@ -115,7 +145,7 @@
             </main>
         </div>*@
 
-    <main role="main" class="pb-3 font" style="min-height: 400px;">
+    <main role="main" class="pb-3 font">
         @RenderBody()
     </main>
 
@@ -123,7 +153,7 @@
         @*<div class="container">
                 &copy; 2021 - Shop_Online - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>*@
-        <hr class="m-0 mb-2 p-0" style=" background-color: #125386; height: 2px;">
+        <hr class="m-0 mb-2 p-0 w=100">
         <div class="container-fluid px-lg-5 py-2">
             <div class="container-fluid p-0">
                 <div class="container ">
@@ -229,7 +259,7 @@
                         </div>
                         <div class="col-md-8 ">
                             <h5 class="mb-1"><b>Danh sách các ngân hàng thanh toán online</b></h5>
-                            <img class="img-fluid" src="https://phongvu.vn/media/wysiwyg/phongvu/phongvu_v3/banklist.jpg">
+                            <img class="img-fluid" src="https://phongvu.vn/media/wysiwyg/phongvu/phongvu_v3/banklist.jpg" alt="payment-method">
                         </div>
                     </div>
                 </div>
@@ -257,15 +287,18 @@
                         </p>
                     </div>
                     <div class="col-md-2 ">
-                        <img class="img-fluid" src="https://phongvu.vn/media/wysiwyg/phongvu/phongvu_v3/da-dang-ky.png">
+                        <img class="img-fluid" src="https://phongvu.vn/media/wysiwyg/phongvu/phongvu_v3/da-dang-ky.png" alt="Đăng ký bộ công thương">
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    
+
     @*<script src="~/js/site.js" asp-append-version="true"></script>*@
-    
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+<script>
+    checkCart();
+</script>
 </html>

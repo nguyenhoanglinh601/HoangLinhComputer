@@ -1,13 +1,113 @@
-﻿@model Shop_Online.Models.ViewModels.OrderInfo
+﻿@model Shop_Online.Models.ViewModels.Order
 @{
-    ViewData["Title"] = "Đơn hàng - ";
+    ViewData["Title"] = "Đơn hàng " + Model.invoice.ID + " - ";
+    ViewData["Description"] = "Đơn hàng có mã " + Model.invoice.ID + " của bạn tại Hoàng Linh Computer.";
+    ViewData["Keyworks"] = "don hang " + Model.invoice.ID + " tai hoang linh computer";
+    ViewData["Author"] = "Đơn hàng";
+    ViewData["Og-Title"] = "Đơn hàng";
+    ViewData["Og-Description"] = "Đơn hàng tại Hoàng Linh Computer";
+
+    //SỬA SAU
+    ViewData["Og-Url"] = "https://localhost:44386/orders/detail/" + Model.invoice.ID;
+    ViewData["Og-Image"] = "/Images/logo.png";
+    ViewData["Img-Src"] = "/Images/logo.png";
+    ViewData["Dc-Title"] = "Đơn hàng";
+    ViewData["Dc-Identifier"] = "";
+    ViewData["Dc-Description"] = "Đơn hàng tại Hoàng Linh Computer.";
+    ViewData["Dc-Subject"] = "don hang";
+    ViewData["Alternate"] = "";
+    ViewData["Canonical"] = "";
 }
-<div class="container-fluid border">
-    @Model.name
-    @Model.phone_number
-    @Model.address
-    @Model.note
-    @Model.birthDay
-    @Model.gender
-    @Model.cart
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb px-lg-5 mb-0">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Đơn hàng @Model.invoice.ID</li>
+    </ol>
+</nav>
+<div class="container-fluid bg-light">
+    <div class="container bg-white">
+        <h1 class="text-primary text-center w-100">Thông tin đơn hàng</h1>
+        <div class="row p-2 d-flex justify-content-between">
+            <div class="col-md-6 px-1">
+                <div class="p-1 border rounded">
+                    <p class="m-0">
+                        <strong>Mã đơn hàng: </strong> @Model.invoice.ID
+                    </p>
+                    <p class="m-0">
+                        <strong>Loại: </strong> @Model.invoice.Invoice_Name
+                    </p>
+                    <p class="m-0">
+                        <strong>Ngày tạo: </strong>  <span class="time">@Model.invoice.CreateDate</span>
+                    </p>
+                    <p class="m-0">
+                        <strong>Địa chỉ giao hàng: </strong> @Model.invoice.CustomerAddress
+                    </p>
+                    <p class="m-0">
+                        <strong>Thời gian giao hàng: </strong> <span class="time">@Model.invoice.ShipDate</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 px-1">
+                <div class="p-1 border rounded d-flex justify-content-between">
+                    <div class="">
+                        <p class="mb-1 font-weight-bold text-secondary">Tạm tính: </p>
+                        <p class="mb-1 font-weight-bold text-secondary">Phí vận chuyển: </p>
+                        <p class="mb-1 font-weight-bold text-secondary">Phụ phí: </p>
+                        <p class="mb-1 font-weight-bold text-secondary">Tổng cộng: </p>
+                    </div>
+                    <div class="">
+                        <p class="mb-1 text-right text-secondary product_price" id="cost">
+                            @Model.invoice.TotalMoney
+                        </p>
+                        <p class="mb-1 text-right text-secondary">0đ</p>
+                        <p class="mb-1 text-right text-secondary">0đ</p>
+                        <strong class="mb-1 text-right text-secondary product_price text-danger" id="total">
+                            @Model.invoice.TotalMoney
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @foreach (var item in Model.Detail)
+        {
+            <div class="row my-4 py-1 border rounded">
+                <div class="col-md-3 align-self-center order-md-1 order-2 ">
+                    <img class="img-fluid thumbnail w-100" src="@item.thumbnail" alt="@item.ProductName" />
+                </div>
+                <div class="col-md-8 align-self-center order-md-2 order-3 ">
+                    <div class="row">
+                        <div class="col-lg-6 align-self-center ">
+                            <h5 class="text-center text-secondary">
+                                <strong>
+                                    @item.ProductName
+                                </strong>
+                            </h5>
+                        </div>
+                        <div class="col-lg-2 col-4 align-self-center ">
+                            <p class="m-0 text-center text-secondary">
+                                <strong class="product_price price_single">@item.price </strong>
+                            </p>
+                        </div>
+                        <div class="col-lg-2 col-4 align-self-center  d-flex text-secondary">
+                            <p class="m-0">x&nbsp;</p>
+                            <p class="m-0">@item.quantity </p>
+                            <p class="m-0 d-lg-none d-flex">&nbsp;=</p>
+                        </div>
+                        <div class="col-lg-2 col-4 align-self-center ">
+                            <p class="m-0 text-danger total text-center">
+                                <strong class="product_price price_total">
+                                    @(item.price * item.quantity)
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
+<script>
+    displayThumbnail();
+    convertPrice();
+    convertTime();
+</script>

@@ -1,0 +1,83 @@
+﻿@model List<Shop_Online.Models.ViewModels.Order>
+@{
+    ViewData["Title"] = "Danh sách đơn hàng - ";
+    ViewData["Description"] = "Danh sách đon hàng của bạn tại Hoàng Linh Computer.";
+    ViewData["Keyworks"] = "don hang";
+    ViewData["Author"] = "Danh sách đơn hàng";
+    ViewData["Og-Title"] = "Danh sách đơn hàng";
+    ViewData["Og-Description"] = "Danh sách đon hàng của bạn tại Hoàng Linh Computer.";
+
+    //SỬA SAU
+    ViewData["Og-Url"] = "https://localhost:44386/Orders";
+    ViewData["Og-Image"] = "/Images/logo.png";
+    ViewData["Img-Src"] = "/Images/logo.png";
+    ViewData["Dc-Title"] = "Danh sách đơn hàng";
+    ViewData["Dc-Identifier"] = "";
+    ViewData["Dc-Description"] = "Danh sách đon hàng của bạn tại Hoàng Linh Computer.";
+    ViewData["Dc-Subject"] = "don hang";
+    ViewData["Alternate"] = "";
+    ViewData["Canonical"] = "";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb px-lg-5 mb-0">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Danh sách đơn hàng</li>
+    </ol>
+</nav>
+<div class="container-fluid bg-light py-2">
+    <div class="container bg-white">
+        <h1 class="w-100 text-center text-primary">Danh sách đơn hàng</h1>
+        <hr class="w-100"/>
+        <div class="row d-md-flex justify-content-center d-none">
+            <div class="col-11">
+                <div class="row">
+                    <div class="col-md-2 text-center align-self-center">
+                        <strong>Mã đơn hàng</strong>
+                    </div>
+                    <div class="col-md-6 text-center align-self-center">
+                        <strong>Sản phẩm</strong>
+                    </div>
+                    <div class="col-md-2 text-center align-self-center">
+                        <strong>Ngày tạo</strong>
+                    </div>
+                    <div class="col-md-2 text-center align-self-center">
+                        <strong>Trạng thái</strong>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        @foreach (var item in Model)
+        {
+            <a href="/orders/detail/@item.invoice.ID">
+                <div class="row p-2 d-flex justify-content-center">
+                    <div class="col-11 border rounded">
+                        <div class="row">
+                            <div class="col-md-2 justify-content-md-center align-self-center d-flex">
+                                <strong class="d-md-none d-flex">Mã đơn hàng:&nbsp;</strong>
+                                <p class="m-0">@item.invoice.ID</p>
+                            </div>
+                            <div class="col-md-6 text-md-center align-self-center">
+                                <strong class="d-md-none d-flex">Sản phẩm: </strong>
+                                @foreach (var product in item.Detail)
+                                {
+                                    <p class="m-0">@product.ProductName <strong class="text-warning">x @product.quantity</strong></p>
+                                }
+                            </div>
+                            <div class="col-md-2 px-md-1 justify-content-md-center align-self-center d-flex">
+                                <strong class="d-md-none d-flex">Ngày tạo:&nbsp;</strong>
+                                <p class="time m-0">@item.invoice.CreateDate</p>
+                            </div>
+                            <div class="col-md-2 justify-content-md-center align-self-center d-flex">
+                                <strong class="d-md-none d-flex">Trạng thái:&nbsp;</strong>
+                                <p class="text-success m-0">Thành công</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+<script>
+    convertTime();
+</script>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Shop_Online.Data;
 using Shop_Online.Models;
 using Shop_Online.Models.ViewModels;
@@ -39,6 +40,7 @@ namespace Shop_Online.Controllers
                 }
                 else
                 {
+                    HttpContext.Session.SetString("user_id", customer.ID.ToString());
                     return View("LoginSuccess", customer);
                 }
             }

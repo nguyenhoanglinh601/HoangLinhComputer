@@ -49,7 +49,6 @@ namespace Shop_Online.Controllers
 
                         //decrease product quantity when it is added to customer cart.
                         //testing...
-                        product.Amount = product.Amount - 1;
                         _context.Update(product);
                     }
                 }

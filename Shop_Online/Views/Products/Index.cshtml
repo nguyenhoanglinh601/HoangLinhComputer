@@ -1,7 +1,28 @@
 ﻿@model List<Shop_Online.Models.ViewModels.HomeProduct>
 
 @{
-    ViewData["Title"] = "Home - ";
+    ViewData["Title"] = "Laptop - Máy tính - Phụ kiện - Linh kiện chính hãng - ";
+    ViewData["Description"] = "Hoàng Linh Computer chuyên cung cấp, phân phối laptop, máy tính, phụ kiện, " +
+                "linh kiện chính hãng, giá tốt. Mua trả góp, ưu đãi lớn hôm nay. Click ngay!";
+    ViewData["Keyworks"] = "laptop chinh hang, linh kien may tinh chinh hang, laptop gia re, laptop hoang linh";
+
+    //SỬA SAU
+    ViewData["Author"] = "https://localhost:44386";
+    ViewData["Og-Title"] = "Laptop - Máy tính - Phụ kiện - Linh kiện chính hãng - Hoàng Linh Computer";
+    ViewData["Og-Description"] = "Hoàng Linh Computer chuyên cung cấp, phân phối laptop, máy tính, phụ kiện, " +
+                "linh kiện chính hãng, giá tốt. Mua trả góp, ưu đãi lớn hôm nay. Click ngay!";
+
+    //SỬA SAU
+    ViewData["Og-Url"] = "https://localhost:44386";
+    ViewData["Og-Image"] = "/Images/logo.png";
+    ViewData["Img-Src"] = "/Images/logo.png";
+    ViewData["Dc-Title"] = "Laptop - Máy tính - Phụ kiện - Linh kiện chính hãng - Hoàng Linh Computer";
+    ViewData["Dc-Identifier"] = "https://localhost:44386";
+    ViewData["Dc-Description"] = "Hoàng Linh Computer chuyên cung cấp, phân phối laptop, máy tính, phụ kiện, " +
+                "linh kiện chính hãng, giá tốt. Mua trả góp, ưu đãi lớn hôm nay. Click ngay!";
+    ViewData["Dc-Subject"] = "laptop chinh hang, linh kien may tinh chinh hang, laptop gia re, laptop hoang linh";
+    ViewData["Alternate"] = "https://localhost:44386";
+    ViewData["Canonical"] = "https://localhost:44386";
 }
 <head>
     <link rel="stylesheet" href="~/css/home.css" />
@@ -17,13 +38,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="~/Images/carousel-1.png" alt="HoangLinh Coputer">
+                        <img class="d-block w-100" src="~/Images/carousel-1.png" alt="HoangLinh Coputer - máy tính mới">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="~/Images/carousel-3.png" alt="Máy tính Hoàng Linh">
+                        <img class="d-block w-100" src="~/Images/carousel-3.png" alt="Máy tính Hoàng Linh - máy tính chính hãng">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="~/Images/carousel-4.png" alt="Hoàng Linh Computer">
+                        <img class="d-block w-100" src="~/Images/carousel-4.png" alt="Hoàng Linh Computer - máy tính giá rẻ">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
@@ -63,7 +84,7 @@
             </div>
             <div class="row border rounded highlight-product-3 py-lg-0 py-2">
                 <div class="col-lg-4 px-0 align-self-center text-center">
-                    <img class="img-fluid" src="~/Images/screen.png" alt="Laptop Hoàng Linh" />
+                    <img class="img-fluid" src="~/Images/screen.png" alt="Màn hình máy tính Hoàng Linh" />
                 </div>
                 <div class="col-lg-8 align-self-center">
                     <p class="p-title m-0 text-center">Màn hình LG 4k Ultra HD</p>
@@ -76,6 +97,44 @@
         </div>
     </div>
     <div class="container my-2 d-product">
+        <div class="border rounded p-1">
+            <h1 class="text-warning text-center" style="font-family: Helvetica,sans-serif;">Tại sao bạn nên chọn Hoàng Linh Computer?</h1>
+            <h2 class="slogan-medium text-center">
+                <small class="pt-1">&nbsp;Mua lapto trả góp 0% - Đổi trả sản phẩm trong 30 ngày</small>
+            </h2>
+            <div class="row">
+                <div class="col-md-6 col-12 policy py-2">
+                    <h5 class="m-0"><strong>Chính sách bán hàng</strong></h5>
+                    <div class="d-flex py-1">
+                        <i class="far fa-check-circle icon-home"></i>
+                        <small class="m-0 pt-1">&nbsp;Cam kết hàng chính hãng 100%</small>
+                    </div>
+                    <div class="d-flex py-1">
+                        <i class="fas fa-truck icon-home"></i>
+                        <small class="m-0 pt-1">&nbsp;Miễn phí giao hàng từ 800.000đ</small>
+                    </div>
+                    <div class="d-flex py-1">
+                        <i class="fas fa-sync-alt icon-home"></i>
+                        <small class="m-0 pt-1">&nbsp;Đổi trả trong 10 ngày</small>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12 service py-2">
+                    <h5 class="m-0"><strong>Dịch vụ khác</strong></h5>
+                    <div class="d-flex py-1">
+                        <i class="fas fa-cogs icon-home"></i>
+                        <small class="m-0 pt-1">&nbsp;Sửa chữa đồng giá 150.000đ</small>
+                    </div>
+                    <div class="d-flex py-1">
+                        <i class="fas fa-video icon-home"></i>
+                        <small class="m-0 pt-1">&nbsp;Kiểm tra thiết bị</small>
+                    </div>
+                    <div class="d-flex py-1">
+                        <i class="fas fa-home icon-home"></i>
+                        <small class="m-0 pt-1">&nbsp;Bảo hành tại nhà</small>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row my-3 bg-white">
             <div class="d-title w-100 d-flex justify-content-between px-2">
                 <a>
@@ -89,9 +148,9 @@
             @for (var i = 0; i < Model.Count(); i++)
             {
                 <div class="col-lg-3 col-md-4 my-3 text-center">
-                    <a href="/products/detail/@Model[i].product_info.ID">
+                    <a href="/products/detail?p=@Model[i].url">
 
-                        <img class="img-fluid thumbnail" src="@Model[i].thumbnail" />
+                        <img class="img-fluid thumbnail fix-image" src="@Model[i].thumbnail" alt="@Model[i].product_info.Product_Name" />
                         <p class="text-center m-0 text-secondary product_name">
                             @Html.DisplayFor(modelItem => Model[i].product_info.Product_Name)
                         </p>
@@ -126,9 +185,9 @@
             @for (var i = 8; i < Model.Count(); i++)
             {
                 <div class="col-lg-3 col-md-4 my-3 text-center">
-                    <a href="/products/detail/@Model[i].product_info.ID">
+                    <a href="/products/detail?p=@Model[i].url">
 
-                        <img class="img-fluid thumbnail" src="@Model[i].thumbnail" />
+                        <img class="img-fluid thumbnail" src="@Model[i].thumbnail" alt="@Model[i].product_info.Product_Name" />
                         <p class="text-center m-0 text-secondary product_name">
                             @Html.DisplayFor(modelItem => Model[i].product_info.Product_Name)
                         </p>
@@ -146,7 +205,6 @@
                         </p>
                     </a>
                 </div>
-                @if (i == 7) break;
             }
         </div>
 
@@ -163,39 +221,39 @@
             <div class="carousel-item active">
                 <div class="row">
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/acer.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/acer.png" alt="Acer">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/asus.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/asus.png" alt="Asus">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/hp.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/hp.png" alt="HP">
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="row">
                     <div class="col-4 pt-md-3 pt-2">
-                        <img class="d-block img-fluid" src="~/Images/mac.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/mac.png" alt="Macbook">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/lg.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/lg.png" alt="LG">
                     </div>
                     <div class="col-4 pt-md-3 pt-2">
-                        <img class="d-block img-fluid" src="~/Images/samsung.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/samsung.png" alt="SamSung">
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="row">
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/lenovo.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/lenovo.png" alt="Lenovo">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/dell.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/dell.png" alt="Dell">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/msi.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/msi.png" alt="MSI">
                     </div>
                 </div>
             </div>

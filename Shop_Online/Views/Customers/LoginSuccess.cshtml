@@ -1,5 +1,21 @@
 ﻿@model Shop_Online.Models.Customer
-
+@{
+    ViewData["Title"] = "Đăng nhập thành công - ";
+    ViewData["Description"] = "Đăng nhập thành công vào hệ thống Hoàng Linh Computer.";
+    ViewData["Keyworks"] = "dang nhap hoang linh computer";
+    ViewData["Author"] = "Đăng nhập thành công";
+    ViewData["Og-Title"] = "Đăng nhập thành công";
+    ViewData["Og-Description"] = "Đăng nhập thành công vào hệ thống Hoàng Linh Computer.";
+    ViewData["Og-Url"] = "https://localhost:44386/Customers/Login";
+    ViewData["Og-Image"] = "/Images/logo.png";
+    ViewData["Img-Src"] = "/Images/logo.png";
+    ViewData["Dc-Title"] = "Đăng nhập thành công";
+    ViewData["Dc-Identifier"] = "";
+    ViewData["Dc-Description"] = "Đăng nhập thành công vào hệ thống Hoàng Linh Computer.";
+    ViewData["Dc-Subject"] = "dang nhap thanh cong";
+    ViewData["Alternate"] = "";
+    ViewData["Canonical"] = "";
+}
 <script>
     localStorage.setItem("user_id",@Model.ID);
     let cart = localStorage.getItem("cart");

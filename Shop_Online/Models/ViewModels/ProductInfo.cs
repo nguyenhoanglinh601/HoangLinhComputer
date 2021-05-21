@@ -10,5 +10,6 @@ namespace Shop_Online.Models.ViewModels
         public Product product { get; set; }
         public ProductDetail productDescription { get; set; }
         public List<ProductImage> productImages { get; set; }
+        public string url { get; set; }
     }
 }

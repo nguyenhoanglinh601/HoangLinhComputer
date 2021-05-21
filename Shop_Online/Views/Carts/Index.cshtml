@@ -1,15 +1,46 @@
 ﻿@model List<Shop_Online.Models.ViewModels.CartItem>
 @{
     ViewData["Title"] = "Giỏ hàng - ";
+    ViewData["Description"] = "Giỏ hàng của bạn tại Hoàng Linh Computer.";
+    ViewData["Keyworks"] = "gio hang";
+    ViewData["Author"] = "Giỏ hàng";
+    ViewData["Og-Title"] = "Giỏ hàng";
+    ViewData["Og-Description"] = "Giỏ hàng của bạn tại Hoàng Linh Computer.";
+
+    //SỬA SAU
+    ViewData["Og-Url"] = "https://localhost:44386/carts";
+    ViewData["Og-Image"] = "/Images/logo.png";
+    ViewData["Img-Src"] = "/Images/logo.png";
+    ViewData["Dc-Title"] = "Giỏ hàng";
+    ViewData["Dc-Identifier"] = "";
+    ViewData["Dc-Description"] = "Giỏ hàng của bạn tại Hoàng Linh Computer.";
+    ViewData["Dc-Subject"] = "gio hang";
+    ViewData["Alternate"] = "";
+    ViewData["Canonical"] = "";
+
 }
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb px-lg-5">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <ol class="breadcrumb px-lg-5 mb-0">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
         <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
     </ol>
 </nav>
 <div class="container-fluid">
     <div class="container" id="cart">
+            @if (Model.Count() > 0)
+            {
+                <h1 class="text-center w-100 text-primary py-2">Giỏ hàng của bạn có @Model.Count() sản phẩm</h1>
+                <hr class="w-100"/>
+            }
+            else
+            {
+                <h1 class="text-center w-100 text-warning py-2">Giỏ hàng của bạn chưa có sản phẩm</h1>
+                <p class="w-100 text-center text-primary">
+                    <a href="/">
+                        <i>Khám phá thêm sản phẩm tại HoangLinh.vn</i>
+                    </a>
+                </p>
+            }
         @if (Model != null && Model.Count() > 0)
         {
             <div class="row  d-lg-flex d-none">
@@ -55,7 +86,7 @@
             {
                 <div class="row my-3 py-1 border rounded" id="item_@item.product.ID">
                     <div class="col-md-3 align-self-center order-md-1 order-2 ">
-                        <img class="img-fluid thumbnail w-100" src="@item.thumbnail.Image" />
+                        <img class="img-fluid thumbnail w-100" src="@item.thumbnail.Image" alt="@item.product.Product_Name" />
                     </div>
                     <div class="col-md-8 align-self-center order-md-2 order-3 ">
                         <div class="row">
@@ -88,7 +119,7 @@
                         </div>
                     </div>
                     <div class="col-md-1 py-1  d-flex justify-content-end  text-warning order-md-3 order-1">
-                        <i class="fas fa-times" style="cursor: pointer" onclick="removeProduct(@item.product.ID)"></i>
+                        <i class="fas fa-times" onclick="removeProduct(@item.product.ID)"></i>
                     </div>
                 </div>
             }
@@ -114,7 +145,7 @@
                 <div class="col-lg-3 col-md-5">
                     <div class="row">
                         @*<a class="btn btn-primary w-100 text-white" data-toggle="modal"
-                           data-target="#OrderInfoModal" onclick="getCart()">Tiếp tục đặt hàng</a>*@
+                            data-target="#OrderInfoModal" onclick="getCart()">Tiếp tục đặt hàng</a>*@
                         <button class="btn btn-primary w-100 text-white" onclick="checkLogin()">Tiếp tục đặt hàng</button>
                     </div>
                 </div>
@@ -122,71 +153,33 @@
         }
     </div>
 </div>
-@*<div class="modal fade" id="OrderInfoModal" tabindex="-1" role="dialog" 
-     aria-labelledby="OrderInfoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="addressModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="OrderInfoModalLabel">Thông tin đặt hàng</h5>
+                <h5 class="modal-title" id="addressModalLabel">Thông tin giao hàng</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-controller="orders" asp-action="order" method="post">
-                    <div class="form-group">
-                        <label for="name">Họ tên khách hàng</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nguyễn Văn A" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone_number">Số điện thoại</label>
-                        <input type="tel" pattern="[0]{1}[0-9]{9}" class="form-control" id="phone_number" name="phone_number" placeholder="0969076447" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Địa chỉ</label>
-                        <textarea class="form-control" id="address" name="address"
-                                  placeholder="212/58 Thoại Ngọc Hầu, Phường Phú Thạnh, Quận Tân Phú, HCM" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="note">Ghi chú</label>
-                        <textarea class="form-control" id="note" name="note"
-                                  placeholder=""></textarea>
-                    </div>
-                    <div class="form-check">
-                        <input type="hidden" name="isNewAccount" value="false" />
-                        <input type="checkbox" class="form-check-input" id="is_new_account" checked/>
-                        <label class="form-check-label" for="is_new_account">
-                            Tạo tài khoản mới cho tôi (nếu quý khách chưa cho tài khoản tại HoangLinh.vn)
-                        </label>
-                    </div>
-                    <div id="account_info" class="mt-2">
-                        <div class="form-group">
-                            <label for="birth_day">Ngày sinh</label>
-                            <input type="date" class="form-control" 
-                                   id="birth_day" name="birthDay">
-                        </div>
-                        <div class="form-group">
-                            <label for="gender">Giới tính</label>
-                            <select class="form-control" id="gender">
-                                <option value="0"></option>
-                                <option value="1">Nam</option>
-                                <option value="2">Nữ</option>
-                            </select>
-                        </div>
-                        <p class="text-success">Mật khẩu mặt định là ngày tháng năm sinh của quý khách (viết liền, không bao gồm ký tự)</p>
-                    </div>
-                    <div class="w-100 text-center">
-                        <button type="submit" class="btn btn-primary w-100">Đặt hàng</button>
-                    </div>
-                </form>
+                <div class="form-group">
+                    <strong>Địa chỉ giao hàng</strong>
+                    <textarea class="form-control" id="address" placeholder="Địa chỉ"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="order()">Đặt hàng</button>
             </div>
         </div>
     </div>
-</div>*@
+</div>
+
 <script type="text/javascript" src="~/js/Cart.js"></script>
 @*<script type="text/javascript" src="~/js/general.js"></script>*@
 <script>
     displayThumbnail();
     convertPrice();
+    setQuantity();
     caculateBillTotal();
 </script>

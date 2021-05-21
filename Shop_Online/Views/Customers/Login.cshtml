@@ -1,74 +1,104 @@
 ﻿@model  Shop_Online.Models.ViewModels.CustomerLogin
 @{
     ViewData["Title"] = "Đăng nhập - ";
+    ViewData["Description"] = "Đăng nhập vào hệ thống Hoàng Linh Computer.";
+    ViewData["Keyworks"] = "dang nhap hoang linh computer";
+    ViewData["Author"] = "Đăng nhập";
+    ViewData["Og-Title"] = "Đăng nhập";
+    ViewData["Og-Description"] = "Đăng nhập vào hệ thống Hoàng Linh Computer.";
+
+    //SỬA SAU
+    ViewData["Og-Url"] = "https://localhost:44386/Customers/Login";
+    ViewData["Og-Image"] = "/Images/logo.png";
+    ViewData["Img-Src"] = "/Images/logo.png";
+    ViewData["Dc-Title"] = "Đăng nhập";
+    ViewData["Dc-Identifier"] = "";
+    ViewData["Dc-Description"] = "Đăng nhập vào hệ thống Hoàng Linh Computer.";
+    ViewData["Dc-Subject"] = "dang nhap";
+    ViewData["Alternate"] = "";
+    ViewData["Canonical"] = "";
 }
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb px-lg-5 mb-0">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Đăng nhập</li>
+    </ol>
+</nav>
 <div class="container-fluid bg-light">
     <div class="container bg-white border rounded my-2">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <img class="w-100" src="~/Images/logo.png" />
+                <img class="w-100" src="~/Images/logo.png" alt="Hoàng Linh Computer"/>
             </div>
         </div>
         <div class="row my-2">
-            <div class="col-md-6">
-                <form asp-controller="Customers" asp-action="ConfirmLogin" method="post">
-                    <div class="form-group">
-                        <label for="userName">Tên tài khoản</label>
-                        <input type="text" class="form-control" id="userName" name="UserName" asp-for="UserName"/>
-                        <span class="text-danger" asp-validation-for="UserName"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="Password" asp-for="Password"/>
-                        <span class="text-danger" asp-validation-for="Password"></span>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="remember">
-                        <label class="form-check-label" for="remember">Nhớ tài khoản của tôi</label>
-                    </div>
-                    <p class="text-danger text-center">@ViewData["message"]</p>
-                    <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
-                    <a class="text-primary">Quên tài khoản?</a>
-                </form>
+            <div class="col-md-6 p-2">
+                <div class="border rounded p-2">
+                    <h1 class="w-100 text-center">Đăng nhập</h1>
+                    <form asp-controller="Customers" asp-action="ConfirmLogin" method="post">
+                        <div class="form-group">
+                            <label for="userName">Tên tài khoản</label>
+                            <input type="text" class="form-control" id="userName" name="UserName" asp-for="UserName" />
+                            <span class="text-danger" asp-validation-for="UserName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mật khẩu</label>
+                            <input type="password" class="form-control" id="password" name="Password" asp-for="Password" />
+                            <span class="text-danger" asp-validation-for="Password"></span>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="remember">
+                            <label class="form-check-label" for="remember">Nhớ tài khoản của tôi</label>
+                        </div>
+                        <p class="text-danger text-center">@ViewData["message"]</p>
+                        <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+                        <a class="text-primary">Quên tài khoản?</a>
+                    </form>
+                </div>
             </div>
-            <div class="col-md-6">
-                <form>
-                    <div class="form-group">
-                        <label for="userNameRegister">Tên tài khoản</label>
-                        <input type="text" class="form-control" id="userNameRegister" name="UserName" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="passwordRegister">Password</label>
-                        <input type="password" class="form-control" id="passwordRegister" name="Password" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="FisrtName">Họ</label>
-                        <input type="text" class="form-control" id="FisrtName" name="FirstName" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="LastName">Tên</label>
-                        <input type="text" class="form-control" id="LastName" name="LastName" required />
-                    </div>
-                    <label>Giới tính</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="Gender" id="Man" value="0">
-                        <label class="form-check-label" for="Man">Nam</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="Gender" id="Woman" value="1">
-                        <label class="form-check-label" for="Woman">Nữ</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="BirthDay">Ngày sinh</label>
-                        <input type="date" class="form-control" id="BirthDay" name="BirthDay" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="Address">Địa chỉ</label>
-                        <textarea class="form-control" id="Address" name="Address" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-success w-100">Đăng kí</button>
-                </form>
+            
+            <div class="col-md-6 p-2">
+                <div class="border rounded p-2">
+                    <h1 class="w-100 text-center">Hoặc đăng kí tài khoản mới</h1>
+                    <form>
+                        <div class="form-group">
+                            <label for="userNameRegister">Tên tài khoản</label>
+                            <input type="text" class="form-control" id="userNameRegister" name="UserName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordRegister">Mật khẩu</label>
+                            <input type="password" class="form-control" id="passwordRegister" name="Password" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="FisrtName">Họ</label>
+                            <input type="text" class="form-control" id="FisrtName" name="FirstName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="LastName">Tên</label>
+                            <input type="text" class="form-control" id="LastName" name="LastName" required />
+                        </div>
+                        <label>Giới tính</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Gender" id="Man" value="0">
+                            <label class="form-check-label" for="Man">Nam</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Gender" id="Woman" value="1">
+                            <label class="form-check-label" for="Woman">Nữ</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="BirthDay">Ngày sinh</label>
+                            <input type="date" class="form-control" id="BirthDay" name="BirthDay" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="Address">Địa chỉ</label>
+                            <textarea class="form-control" id="Address" name="Address" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Đăng kí</button>
+                    </form>
+                </div>
             </div>
+            
         </div>
     </div>
 </div>

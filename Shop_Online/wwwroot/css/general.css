@@ -6,3 +6,52 @@ a {
     text-decoration: none !important;
     color: inherit !important;
 }
+i {
+    cursor: pointer;
+}
+h1 {
+    font-size: 25px;
+}
+main {
+    min-height: 400px;
+}
+.linkCart {
+    position: relative;
+}
+.slogan-medium {
+    color: rgb(83, 195, 5);
+    font-size: 20px;
+}
+
+.badgeNumberCartItem {
+    display: none;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    bottom: 50%;
+    left: 90%;
+}
+
+@media screen and (max-width: 650px){
+    .badgeNumberCartItem {
+        display: none;
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        top: 5%;
+        left: 80%;
+    }
+}
+
+.icon-home {
+    color: rgb(20, 53, 195);
+    font-size: 20px;
+}

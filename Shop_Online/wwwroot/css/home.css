@@ -31,14 +31,23 @@
 .i-brand{
     width: 33%;
 }
+.fix-image{
+    height: 150px;
+}
 @media screen and (max-width: 1100px){
     .p-title, .d-price{
         font-size: 50px;
+    }
+    .fix-image {
+        height: 120px;
     }
 }
 
 @media screen and (max-width: 600px) {
     .p-title, .d-price {
         font-size: 25px;
+    }
+    .fix-image {
+        height: max-content;
     }
 }

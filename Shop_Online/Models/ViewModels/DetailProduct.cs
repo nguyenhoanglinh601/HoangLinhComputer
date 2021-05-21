@@ -10,6 +10,6 @@ namespace Shop_Online.Models.ViewModels
         public ProductInfo product { get; set; }
         public List<ProductInfo> SaleOffProductList { get; set; }
         public List<ProductInfo> SameProductList { get; set; }
-
+        public CatologLayout CatologInfo { get; set; }
     }
 }

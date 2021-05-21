@@ -1,0 +1,6 @@
+﻿@model List<Shop_Online.Models.ViewModels.CatologLayout>
+@foreach (var catologLayout in Model)
+{
+    <a class="dropdown-item"
+       href="/Products/Filter?category=@catologLayout.url">@catologLayout.catolog</a>
+}

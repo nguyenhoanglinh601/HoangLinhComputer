@@ -1,42 +1,67 @@
 ﻿@model Shop_Online.Models.ViewModels.DetailProduct
 
 @{
-    ViewData["Title"] = Model.product.product.Product_Name + " - ";
+    ViewData["Title"] = "Phân phối, cung cấp " + Model.product.product.Product_Name + " chính hãng, giá rẻ - ";
+    ViewData["Description"] = "Phân phối, cung cấp " + Model.product.product.Product_Name + " chính hãng," +
+                " bảo hành 24 tháng, đổi mới trong 30 ngày đầu tiên, mua trả góp 0%. Liên hệ: 0969.076.447.";
+    ViewData["Keyworks"] = Model.product.product.Product_Name;
+    ViewData["Author"] = Model.product.product.Product_Name;
+    ViewData["Og-Title"] = "Phân phối, cung cấp " + Model.product.product.Product_Name + " chính hãng, giá rẻ.";
+    ViewData["Og-Description"] = "Phân phối, cung cấp " + Model.product.product.Product_Name + " chính hãng," +
+                " bảo hành 24 tháng, đổi mới trong 30 ngày đầu tiên, mua trả góp 0%. Liên hệ: 0969.076.447.";
+
+    //SỬA SAU
+    ViewData["Og-Url"] = "https://localhost:44386/products/detail?p=" + Model.product.url;
+    ViewData["Og-Image"] = @Model.product.productImages[0].Image;
+    ViewData["Img-Src"] = @Model.product.productImages[0].Image;
+    ViewData["Dc-Title"] = "Phân phối, cung cấp " + Model.product.product.Product_Name + " chính hãng, giá rẻ";
+
+    //SỬA SAU
+    ViewData["Dc-Identifier"] = "https://localhost:44386/products/detail?p=" + Model.product.url;
+    ViewData["Dc-Description"] = "Phân phối, cung cấp " + Model.product.product.Product_Name + " chính hãng," +
+                " bảo hành 24 tháng, đổi mới trong 30 ngày đầu tiên, mua trả góp 0%. Liên hệ: 0969.076.447.";
+    ViewData["Dc-Subject"] = Model.product.product.Product_Name;
+    ViewData["Alternate"] = "https://localhost:44386/products/detail?p=" + Model.product.url;
+    ViewData["Canonical"] = "https://localhost:44386/products/detail?p=" + Model.product.url;
 }
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb px-lg-5 mb-0">
+        <li class="breadcrumb-item"><a href="/">Trang Chủ</a></li>
+        <li class="breadcrumb-item"><a href="/Products/Filter?category=@Model.CatologInfo.url">@Model.CatologInfo.catolog</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.product.product.Product_Name</li>
+    </ol>
+</nav>
 <head>
     <link rel="stylesheet" href="~/css/ProductDetail.css" />
-    <link rel="stylesheet" href="~/css/general.css" />
 </head>
 <div class="container-fluid pt-2 bg-light">
     <div class="container">
         <div class="row pt-2 mb-2 bg-white component">
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-lg-5 image-container">
+                    <div class="col-lg-5 ">
                         @for (int i = 0; i < Model.product.productImages.Count(); i++)
                         {
-                            <div class="mySlides">
+                            <div class="mySlides image-container">
                                 <div class="numbertext">@(i+1) / @Model.product.productImages.Count() </div>
-                                <img class="img-fluid thumbnail display-image" src="@Model.product.productImages[i].Image" style="width:100%">
+                                <img class="img-fluid thumbnail display-image w-100" src="@Model.product.productImages[i].Image" alt="@Model.product.product.Product_Name">
+                                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                                <a class="next" onclick="plusSlides(1)">❯</a>
                             </div>
                         }
-
-
-                        <a class="prev" onclick="plusSlides(-1)">❮</a>
-                        <a class="next" onclick="plusSlides(1)">❯</a>
 
                         <div class="row">
                             @for (int i = 0; i < Model.product.productImages.Count(); i++)
                             {
                                 <div class="column">
                                     <img class="demo cursor thumbnail" src="@Model.product.productImages[i].Image"
-                                         style="width:100%" onclick="currentSlide(@i+1)" alt="The Woods">
+                                         style="width:100%" onclick="currentSlide(@i+1)" alt="@Model.product.product.Product_Name">
                                 </div>
                             }
                         </div>
                     </div>
                     <div class="col-lg-7 pt-lg-0 py-3">
-                        <h4>@Model.product.product.Product_Name</h4>
+                        <h1>@Model.product.product.Product_Name</h1>
                         <p class="m-0 text-secondary" id="product-description">
                             @Model.product.productDescription.Product_Detail
                         </p>
@@ -52,13 +77,13 @@
                         </h2>
                         <div class="row">
                             <div class="col-md-6 py-1">
-                                <a class="btn btn-success w-100 text-white" 
+                                <a class="btn btn-success w-100 text-white"
                                    onclick="addProductToCart(@Model.product.product.ID)">
                                     <strong>Thêm vào giỏ</strong>
                                 </a>
                             </div>
                             <div class="col-md-6 py-1">
-                                <a class="btn btn-primary w-100 text-white">
+                                <a onclick="buyNow(@Model.product.product.ID)" class="btn btn-primary w-100 text-white">
                                     <strong>Mua ngay</strong>
                                 </a>
                             </div>
@@ -129,15 +154,14 @@
                                     @for (int j = 0; j < 3; j++)
                                     {
                                         <div class="col-4">
-                                            <a href="/products/detail/@Model.SaleOffProductList[i].product.ID">
+                                            <a href="/products/detail?p=@Model.SaleOffProductList[i*3+j].url">
                                                 <div class="w-100 d-flex justify-content-center">
                                                     <img class="img-fluid thumbnail" src="@Model.SaleOffProductList[3*i+j].productImages[0].Image"
-                                                         alt="First slide">
-                                                    @(3*i+j)
+                                                         alt="@Model.SaleOffProductList[i].product.Product_Name">
                                                 </div>
                                                 <div>
                                                     <p class="text-center m-0 text-secondary product_name">
-                                                        @Html.DisplayFor(modelItem => Model.SameProductList[i].product.Product_Name)
+                                                        @Html.DisplayFor(modelItem => Model.SaleOffProductList[i].product.Product_Name)
                                                     </p>
                                                     <p class="text-center m-0">
                                                         <del>
@@ -183,24 +207,25 @@
                 </a>
             </div>
 
-            @for (var i = 0; i < Model.SameProductList.Count(); i++)
+            @foreach (var product in Model.SameProductList)
             {
                 <div class="col-lg-3 col-md-4 my-3 text-center">
-                    <a href="/products/detail/@Model.SameProductList[i].product.ID">
-                        <img class="img-fluid thumbnail" src="@Model.SameProductList[i].productImages[0].Image" />
+                    <a href="/products/detail?p=@product.url">
+                        <img class="img-fluid thumbnail" src="@product.productImages[0].Image"
+                             alt="@product.product.Product_Name" />
                         <p class="text-center m-0 text-secondary product_name">
-                            @Html.DisplayFor(modelItem => Model.SameProductList[i].product.Product_Name)
+                            @product.product.Product_Name
                         </p>
                         <p class="text-center m-0">
                             <del>
                                 <small class="product_discount_price">
-                                    @Html.DisplayFor(modelItem => Model.product.product.price)
+                                    @product.product.price
                                 </small>
                             </del>
                         </p>
                         <p class="text-center text-danger m-0">
                             <strong class="product_price">
-                                @Html.DisplayFor(modelItem => Model.product.product.price)
+                                @product.product.price
                             </strong>
                         </p>
                     </a>
@@ -221,39 +246,39 @@
             <div class="carousel-item active">
                 <div class="row">
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/acer.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/acer.png" alt="Acer">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/asus.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/asus.png" alt="Asus">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/hp.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/hp.png" alt="HP">
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="row">
                     <div class="col-4 pt-md-3 pt-2">
-                        <img class="d-block img-fluid" src="~/Images/mac.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/mac.png" alt="Macbook">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/lg.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/lg.png" alt="LG">
                     </div>
                     <div class="col-4 pt-md-3 pt-2">
-                        <img class="d-block img-fluid" src="~/Images/samsung.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/samsung.png" alt="SamSung">
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="row">
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/lenovo.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/lenovo.png" alt="Lenovo">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/dell.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/dell.png" alt="Dell">
                     </div>
                     <div class="col-4">
-                        <img class="d-block img-fluid" src="~/Images/msi.png" alt="First slide">
+                        <img class="d-block img-fluid" src="~/Images/msi.png" alt="MSI">
                     </div>
                 </div>
             </div>
@@ -278,3 +303,5 @@
     convertDiscountPrice();
     activeSlideShow();
 </script>
+ @*Go to www.addthis.com/dashboard to customize your tools*@ 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60a61025404d14e7"></script>

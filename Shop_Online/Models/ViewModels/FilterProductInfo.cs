@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Shop_Online.Models.ViewModels
 {
-    public class HomeProduct
+    public class FilterProductInfo
     {
-        public Product product_info { get; set; }
-        public string thumbnail { get; set; }
+        public List<HomeProduct> products { get; set; }
+        public string category_name { get; set; }
         public string url { get; set; }
     }
 }

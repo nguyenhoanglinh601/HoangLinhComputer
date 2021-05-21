@@ -67,3 +67,8 @@ function breakDownLine(id) {
     });
     document.getElementById(id).innerHTML = newParagraph;
 }
+
+function buyNow(id) {
+    addProductToCart(id);
+    navigateCart();
+}

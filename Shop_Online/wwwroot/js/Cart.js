@@ -18,6 +18,23 @@ function updateQuantity(id, price) {
     document.getElementById("price_" + id).innerHTML = price_after_change;
 
     caculateBillTotal();
+
+    let cartCookie = localStorage.getItem("cart");
+    let cart_arr = cartCookie.split(";");
+    let cart = "";
+    cart_arr.forEach(item => {
+        let product_id = item.split("-")[0];
+        let item_quantity = item.split("-")[1];
+
+        if (parseInt(product_id) == parseInt(id)) {
+            item_quantity = quantity;
+        }
+        cart += product_id + "-" + item_quantity + ";" ;
+    })
+
+    cart = cart.slice(0, cart.length - 1);
+
+    localStorage.setItem("cart", cart);
 }
 
 function convertPriceFromStringToNumber(price) {
@@ -43,19 +60,47 @@ function removeProduct(id) {
     sendRequest();
 }
 
+function setQuantity() {
+    let cartCookie = localStorage.getItem("cart");
+    let cart_arr = cartCookie.split(";");
+
+    for (let i = 0; i < cart_arr.length; i++) {
+        let quantity = cart_arr[i].split("-")[1];
+        document.getElementsByClassName("quantity")[i].value = parseInt(quantity);
+
+        let price_string = document.getElementsByClassName("price_total")[i].innerHTML;
+        let price = convertPriceFromStringToNumber(price_string);
+
+        let price_total = (parseInt(price) * parseInt(quantity)).toLocaleString("tr-TR") + "đ";
+        document.getElementsByClassName("price_total")[i].innerHTML = price_total; 
+    }
+}
+
+
 function getCart() {
     let cartCookie = localStorage.getItem("cart");
-    let id_arr = cartCookie.split("-");
+    let cart_arr = cartCookie.split(";");
     let item_cart_numbers = document.getElementsByClassName("quantity");
-
     let cart = "";
-    for (let i = 0; i < id_arr.length; i++) {
-        cart += id_arr[i] + "-" + item_cart_numbers[i].value + ";";
+    for (let i = 0; i < cart_arr.length; i++) {
+        let product_id = cart_arr[i].split("-")[0];
+        let quantity = item_cart_numbers[i].value;
+        cart += product_id + "-" + quantity + ";";
     }
     cart = cart.slice(0, length - 1);
-
     localStorage.setItem("cart", cart);
-    sendRequest();
+
+    //let id_arr = cartCookie.split("-");
+    //let item_cart_numbers = document.getElementsByClassName("quantity");
+
+    //let cart = "";
+    //for (let i = 0; i < id_arr.length; i++) {
+    //    cart += id_arr[i] + "-" + item_cart_numbers[i].value + ";";
+    //}
+    //cart = cart.slice(0, length - 1);
+
+    //localStorage.setItem("cart", cart);
+    //sendRequest();
 }
 
 $("#is_new_account").click(function () {
@@ -63,27 +108,33 @@ $("#is_new_account").click(function () {
 });
 
 function checkLogin() {
+    getCart();
     if (localStorage.getItem("user_id") == null) {
         sessionStorage.setItem("current_page", window.location.href);
         window.location.href = "https://localhost:44386/customers/login";
     }
     else {
-        
-        $.post("/Orders/Order",
-            {
-                user_id: localStorage.getItem("user_id"),
-                cart: localStorage.getItem("cart")
-            },
-            function (data, status) {
-                
-                if (!isNaN(data)) {
-                    localStorage.removeItem("cart");
-                    window.location.href = "https://localhost:44386/Orders/Detail/" + data;
-                }
-                else {
-                    window.location.href = "https://localhost:44386";
-                }
-            }
-        );
+        $('#addressModal').modal('show')
     }
+}
+
+function order() {
+    let address = $("#address").val();
+    $.post("/Orders/Order",
+        {
+            user_id: localStorage.getItem("user_id"),
+            cart: localStorage.getItem("cart"),
+            address: address
+        },
+        function (data, status) {
+
+            if (!isNaN(data)) {
+                localStorage.removeItem("cart");
+                window.location.href = "https://localhost:44386/Orders/Detail/" + data;
+            }
+            else {
+                window.location.href = "https://localhost:44386";
+            }
+        }
+    ); 
 }
