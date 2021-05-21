@@ -20,7 +20,7 @@
 }
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb px-lg-5 mb-0">
-        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="/" title="Trang chủ">Trang chủ</a></li>
         <li class="breadcrumb-item active" aria-current="page">Danh sách đơn hàng</li>
     </ol>
 </nav>
@@ -48,7 +48,7 @@
         </div>
         @foreach (var item in Model)
         {
-            <a href="/orders/detail/@item.invoice.ID">
+            <a href="/orders/detail/@item.invoice.ID" title="Đơn hàng @item.invoice.ID">
                 <div class="row p-2 d-flex justify-content-center">
                     <div class="col-11 border rounded">
                         <div class="row">

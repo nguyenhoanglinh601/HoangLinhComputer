@@ -47,11 +47,11 @@
                         <img class="d-block w-100" src="~/Images/carousel-4.png" alt="Hoàng Linh Computer - máy tính giá rẻ">
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev" title="Hoàng Linh Computer">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next" title="Hoàng Linh Computer">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
@@ -97,58 +97,20 @@
         </div>
     </div>
     <div class="container my-2 d-product">
-        <div class="border rounded p-1">
-            <h1 class="text-warning text-center" style="font-family: Helvetica,sans-serif;">Tại sao bạn nên chọn Hoàng Linh Computer?</h1>
-            <h2 class="slogan-medium text-center">
-                <small class="pt-1">&nbsp;Mua lapto trả góp 0% - Đổi trả sản phẩm trong 30 ngày</small>
-            </h2>
-            <div class="row">
-                <div class="col-md-6 col-12 policy py-2">
-                    <h5 class="m-0"><strong>Chính sách bán hàng</strong></h5>
-                    <div class="d-flex py-1">
-                        <i class="far fa-check-circle icon-home"></i>
-                        <small class="m-0 pt-1">&nbsp;Cam kết hàng chính hãng 100%</small>
-                    </div>
-                    <div class="d-flex py-1">
-                        <i class="fas fa-truck icon-home"></i>
-                        <small class="m-0 pt-1">&nbsp;Miễn phí giao hàng từ 800.000đ</small>
-                    </div>
-                    <div class="d-flex py-1">
-                        <i class="fas fa-sync-alt icon-home"></i>
-                        <small class="m-0 pt-1">&nbsp;Đổi trả trong 10 ngày</small>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12 service py-2">
-                    <h5 class="m-0"><strong>Dịch vụ khác</strong></h5>
-                    <div class="d-flex py-1">
-                        <i class="fas fa-cogs icon-home"></i>
-                        <small class="m-0 pt-1">&nbsp;Sửa chữa đồng giá 150.000đ</small>
-                    </div>
-                    <div class="d-flex py-1">
-                        <i class="fas fa-video icon-home"></i>
-                        <small class="m-0 pt-1">&nbsp;Kiểm tra thiết bị</small>
-                    </div>
-                    <div class="d-flex py-1">
-                        <i class="fas fa-home icon-home"></i>
-                        <small class="m-0 pt-1">&nbsp;Bảo hành tại nhà</small>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row my-3 bg-white">
-            <div class="d-title w-100 d-flex justify-content-between px-2">
-                <a>
-                    <strong id="test">Sản phẩm nổi bật</strong>
-                </a>
-                <a class="d-md-block d-none">
-                    Xem tất cả <i class="fas fa-angle-double-right"></i>
+            <div class="d-title w-100 d-flex justify-content-between px-2 pt-md-2 pt-1">
+                <h1>Sản phẩm nổi bật</h1>
+                <a class="d-md-block d-none" title="Xem tất cả">
+                    <small>
+                        Xem tất cả <i class="fas fa-angle-double-right"></i>
+                    </small>
                 </a>
             </div>
-
+            <hr class="w-100 mt-0" />
             @for (var i = 0; i < Model.Count(); i++)
             {
                 <div class="col-lg-3 col-md-4 my-3 text-center">
-                    <a href="/products/detail?p=@Model[i].url">
+                    <a href="/products/detail?p=@Model[i].url" title="@Model[i].product_info.Product_Name">
 
                         <img class="img-fluid thumbnail fix-image" src="@Model[i].thumbnail" alt="@Model[i].product_info.Product_Name" />
                         <p class="text-center m-0 text-secondary product_name">
@@ -173,21 +135,21 @@
             }
         </div>
         <div class="row my-3 bg-white">
-            <div class="d-title w-100 d-flex justify-content-between px-2">
-                <a>
-                    <strong id="test">Dành cho bạn</strong>
-                </a>
-                <a class="d-md-block d-none">
-                    Xem tất cả <i class="fas fa-angle-double-right"></i>
+            <div class="d-title w-100 d-flex justify-content-between px-2 pt-md-2 pt-1">
+                <h1>Dành cho bạn</h1>
+                <a class="d-md-block d-none" title="Xem tất cả">
+                    <small>
+                        Xem tất cả <i class="fas fa-angle-double-right"></i>
+                    </small>
                 </a>
             </div>
-
+            <hr class="w-100 mt-0" />
             @for (var i = 8; i < Model.Count(); i++)
             {
                 <div class="col-lg-3 col-md-4 my-3 text-center">
-                    <a href="/products/detail?p=@Model[i].url">
+                    <a href="/products/detail?p=@Model[i].url" title="@Model[i].product_info.Product_Name">
 
-                        <img class="img-fluid thumbnail" src="@Model[i].thumbnail" alt="@Model[i].product_info.Product_Name" />
+                        <img class="img-fluid thumbnail fix-image" src="@Model[i].thumbnail" alt="@Model[i].product_info.Product_Name" />
                         <p class="text-center m-0 text-secondary product_name">
                             @Html.DisplayFor(modelItem => Model[i].product_info.Product_Name)
                         </p>
@@ -258,11 +220,11 @@
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselBrandIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselBrandIndicators" role="button" data-slide="prev" title="Xem thêm thương hiệu">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselBrandIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselBrandIndicators" role="button" data-slide="next" title="Xem thêm thương hiệu">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>

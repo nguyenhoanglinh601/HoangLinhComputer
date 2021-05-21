@@ -89,3 +89,14 @@ function checkCart() {
     }
     
 }
+
+function closeAdvertisement() {
+    $(document).ready(function () {
+        $("center").hide();
+        console.log($("body").children());
+        for (let i = 3; i < $("body").children().length - 1; i++) {
+            $($("body").children()[i]).remove();
+        }
+        console.log($("body").children());
+    });
+}

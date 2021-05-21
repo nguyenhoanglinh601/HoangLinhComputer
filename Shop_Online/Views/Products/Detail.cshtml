@@ -26,8 +26,8 @@
 }
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb px-lg-5 mb-0">
-        <li class="breadcrumb-item"><a href="/">Trang Chủ</a></li>
-        <li class="breadcrumb-item"><a href="/Products/Filter?category=@Model.CatologInfo.url">@Model.CatologInfo.catolog</a></li>
+        <li class="breadcrumb-item"><a href="/" title="Trang chủ">Trang Chủ</a></li>
+        <li class="breadcrumb-item"><a href="/Products/Filter?category=@Model.CatologInfo.url" title="@Model.CatologInfo.catolog">@Model.CatologInfo.catolog</a></li>
         <li class="breadcrumb-item active" aria-current="page">@Model.product.product.Product_Name</li>
     </ol>
 </nav>
@@ -45,8 +45,8 @@
                             <div class="mySlides image-container">
                                 <div class="numbertext">@(i+1) / @Model.product.productImages.Count() </div>
                                 <img class="img-fluid thumbnail display-image w-100" src="@Model.product.productImages[i].Image" alt="@Model.product.product.Product_Name">
-                                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                                <a class="next" onclick="plusSlides(1)">❯</a>
+                                <a class="prev" onclick="plusSlides(-1)" title="Xem ảnh trước đó">❮</a>
+                                <a class="next" onclick="plusSlides(1)" title="Xem ảnh tiếp theo">❯</a>
                             </div>
                         }
 
@@ -78,12 +78,12 @@
                         <div class="row">
                             <div class="col-md-6 py-1">
                                 <a class="btn btn-success w-100 text-white"
-                                   onclick="addProductToCart(@Model.product.product.ID)">
+                                   onclick="addProductToCart(@Model.product.product.ID)" title="Thêm sản phẩm vào giỏ hàng">
                                     <strong>Thêm vào giỏ</strong>
                                 </a>
                             </div>
                             <div class="col-md-6 py-1">
-                                <a onclick="buyNow(@Model.product.product.ID)" class="btn btn-primary w-100 text-white">
+                                <a onclick="buyNow(@Model.product.product.ID)" class="btn btn-primary w-100 text-white" title="Mua sản phẩm">
                                     <strong>Mua ngay</strong>
                                 </a>
                             </div>
@@ -135,10 +135,11 @@
         </div>
         <div class="row bg-white py-2 my-3 component d-md-block d-none">
             <div class="px-2">
-                <h4>
-                    <strong>Sản phẩm đang giảm giá</strong>
-                </h4>
+                <h1>
+                    Sản phẩm đang giảm giá
+                </h1>
             </div>
+            <hr class="w-100 mt-0"/>
             <div class="my-3 d-md-block d-none">
                 <div id="carouselSaleOffProductsIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators d-lg-block d-none">
@@ -154,7 +155,7 @@
                                     @for (int j = 0; j < 3; j++)
                                     {
                                         <div class="col-4">
-                                            <a href="/products/detail?p=@Model.SaleOffProductList[i*3+j].url">
+                                            <a href="/products/detail?p=@Model.SaleOffProductList[i*3+j].url" title="@Model.SaleOffProductList[i].product.Product_Name">
                                                 <div class="w-100 d-flex justify-content-center">
                                                     <img class="img-fluid thumbnail" src="@Model.SaleOffProductList[3*i+j].productImages[0].Image"
                                                          alt="@Model.SaleOffProductList[i].product.Product_Name">
@@ -184,11 +185,11 @@
                         }
 
                     </div>
-                    <a class="carousel-control-prev" href="#carouselSaleOffProductsIndicators" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" href="#carouselSaleOffProductsIndicators" role="button" data-slide="prev" title="Xem thêm sản phẩm">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselSaleOffProductsIndicators" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#carouselSaleOffProductsIndicators" role="button" data-slide="next" title="Xem thêm sản phẩm">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
@@ -197,21 +198,21 @@
         </div>
         <div class="row py-2 bg-white component">
             <div class="d-title w-100 d-flex justify-content-between px-2">
-                <a>
-                    <h4>
-                        <strong id="test">Sản phẩm tương tự</strong>
-                    </h4>
+                <a title="Sản phẩm tương tự">
+                    <h1>
+                        Sản phẩm tương tự
+                    </h1>
                 </a>
-                <a class="d-md-block d-none">
+                <a class="d-md-block d-none" title="Xem tất cả">
                     Xem tất cả <i class="fas fa-angle-double-right"></i>
                 </a>
             </div>
-
+            <hr class="w-100 mt-0" />
             @foreach (var product in Model.SameProductList)
             {
                 <div class="col-lg-3 col-md-4 my-3 text-center">
-                    <a href="/products/detail?p=@product.url">
-                        <img class="img-fluid thumbnail" src="@product.productImages[0].Image"
+                    <a href="/products/detail?p=@product.url" title=" @product.product.Product_Name">
+                        <img class="img-fluid thumbnail fix-image" src="@product.productImages[0].Image"
                              alt="@product.product.Product_Name" />
                         <p class="text-center m-0 text-secondary product_name">
                             @product.product.Product_Name
@@ -283,11 +284,11 @@
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselBrandIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselBrandIndicators" role="button" data-slide="prev" title="Xem thêm sản phẩm">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselBrandIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselBrandIndicators" role="button" data-slide="next" title="Xem thêm sản phẩm">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
