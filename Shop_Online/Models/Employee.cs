@@ -24,6 +24,7 @@ namespace Shop_Online.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime JoinDate { get; set; }
+        [ForeignKey("Role")]
         public int Role_ID { get; set; }
 
         public ICollection<Invoice> Invoices { get; set; }

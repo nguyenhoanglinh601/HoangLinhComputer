@@ -13,7 +13,9 @@ namespace Shop_Online.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public string Invoice_Name { get; set; }
+        [ForeignKey("Customer")]
         public int Customer_Id { get; set; }
+        [ForeignKey("Shipper")]
         public int Shipper_Id { get; set; }
         public decimal TotalMoney { get; set; }
         [DataType(DataType.Date)]

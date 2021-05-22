@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.SEOHelper" Version="1.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.6">
       <PrivateAssets>all</PrivateAssets>
@@ -18,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\google4483bfbee616ea88.html" />
     <None Include="wwwroot\Images\logo.png" />
+    <None Include="wwwroot\sitemap.xml" />
   </ItemGroup>
 
 </Project>

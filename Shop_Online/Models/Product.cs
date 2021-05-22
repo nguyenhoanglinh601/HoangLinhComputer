@@ -19,6 +19,7 @@ namespace Shop_Online.Models
 
         public string Product_Name { get; set; }
         [Required(AllowEmptyStrings = false)]
+        [ForeignKey("Catolog")]
         public int Catalog_id { get; set; }
         public int Amount { get; set; }
         public decimal price { get; set; }

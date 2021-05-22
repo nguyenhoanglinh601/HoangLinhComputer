@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "SfcpMDmQZ2WeW2JyNix4Gz1mDIwC7b0+Hl/jSmxKE1Y6M14qiIqG6FFx7T72exDMKdiBe9daZjacXHecOMswfA==",
+  "dgSpecHash": "EaS9V6c0nLHyL9nuEjOg/Fx9FlW6eOcjwbau69/Ag792JkEuGil/+mh3N4oMCmIFCx4K9+r0BDGzl7xxqoFotw==",
   "success": true,
   "projectFilePath": "F:\\Project\\ASP MVC\\Shop_Online\\Shop_Online\\Shop_Online.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Asus\\.nuget\\packages\\aspnetcore.seohelper\\1.0.1\\aspnetcore.seohelper.1.0.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.0\\microsoft.aspnetcore.razor.language.5.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.aspnetcore.razor.runtime\\2.2.0\\microsoft.aspnetcore.razor.runtime.2.2.0.nupkg.sha512",

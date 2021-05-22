@@ -13,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using AspNetCore.SEOHelper;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Shop_Online
 {
@@ -71,6 +74,7 @@ namespace Shop_Online
             app.UseSession();
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -84,6 +88,9 @@ namespace Shop_Online
                     pattern: "{controller=Products}/{action=Index}/{id?}");
             });
 
+            app.UseStaticFiles();
+
+            app.UseXMLSitemap(env.ContentRootPath);
         }
     }
 }
